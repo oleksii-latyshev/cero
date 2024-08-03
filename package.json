@@ -1,0 +1,19 @@
+{
+  "name": "cero",
+  "module": "./src/main.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/main.ts",
+    "dev": "bun run --watch src/main.ts",
+    "check": "biome check ./src",
+    "check:fix": "biome check --write ./src"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/bun": "latest",
+    "lefthook": "^1.7.11"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
