@@ -1,9 +1,19 @@
-export function formatBytes(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
-}
+import { extname } from 'node:path'
+
+import { type ImageFormat, SUPPORTED_FORMATS } from './constants'
 
 export function calculateSavedPercent(originalSize: number, compressedSize: number): number {
   return Number(((1 - compressedSize / originalSize) * 100).toFixed(1))
+}
+
+export function getImageFormat(filePath: string): ImageFormat {
+  const ext = extname(filePath).toLowerCase()
+  const format = SUPPORTED_FORMATS[ext]
+
+  if (!format) {
+    const supported = Object.keys(SUPPORTED_FORMATS).join(', ')
+    throw new Error(`Unsupported format: ${ext}. Supported: ${supported}`)
+  }
+
+  return format
 }

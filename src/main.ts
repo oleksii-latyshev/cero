@@ -1,28 +1,5 @@
-import { parseArgs } from 'node:util'
-import Bun from 'bun'
-
 import { compress } from 'src/features/compress'
-
-function parseCliArgs() {
-  const { values } = parseArgs({
-    args: Bun.argv.slice(2),
-    options: {
-      'image-path': {
-        type: 'string',
-      },
-      quality: {
-        type: 'string',
-        short: 'q',
-      },
-    },
-    strict: true,
-  })
-
-  return {
-    imagePath: values['image-path'],
-    quality: values.quality ? Number.parseInt(values.quality, 10) : undefined,
-  }
-}
+import { parseCliArgs } from 'src/helpers/parse-cli-args'
 
 async function main(): Promise<void> {
   const args = parseCliArgs()

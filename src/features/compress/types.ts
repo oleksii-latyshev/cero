@@ -1,7 +1,10 @@
+import type { ImageFormat } from 'src/features/compress/constants'
+
 export type CompressOptions = {
   quality: number
   inputPath: string
   outputPath: string
+  format: ImageFormat
 }
 
 export type CompressResult = {
