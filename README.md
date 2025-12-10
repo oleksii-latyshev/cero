@@ -9,7 +9,7 @@ bun install
 To run:
 
 ```bash
-bun run main.ts
+bun run src/main.ts --image-path=./input/test.jpg -q 70
 ```
 
 This project was created using `bun init` in bun v1.1.20. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
