@@ -1,10 +1,25 @@
 {
-  "name": "cero",
-  "module": "./src/main.ts",
+  "name": "@oleksii-latyshev/cero",
+  "version": "0.0.1",
+  "description": "A fast image compression CLI tool",
+  "author": "Oleksii Latyshev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oleksii-latyshev/cero.git"
+  },
+  "keywords": [
+    "image",
+    "compression",
+    "cli",
+    "sharp"
+  ],
+  "module": "./dist/main.js",
   "type": "module",
   "scripts": {
     "start": "bun run src/main.ts",
     "dev": "bun run --watch src/main.ts",
+    "build": "tsup",
     "check": "biome check ./src",
     "check:fix": "biome check --write ./src"
   },
@@ -12,12 +27,19 @@
     "@biomejs/biome": "2.3.8",
     "@types/bun": "latest",
     "@types/node": "^24.10.2",
-    "lefthook": "^2.0.9"
+    "lefthook": "^2.0.9",
+    "tsup": "^8.5.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
     "sharp": "^0.34.5"
-  }
+  },
+  "bin": {
+    "cero": "./dist/main.js"
+  },
+  "files": [
+    "dist"
+  ]
 }

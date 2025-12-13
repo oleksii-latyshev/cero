@@ -1,9 +1,9 @@
+import { argv } from 'node:process'
 import { parseArgs } from 'node:util'
-import Bun from 'bun'
 
 export function parseCliArgs() {
   const { values } = parseArgs({
-    args: Bun.argv.slice(2),
+    args: argv.slice(2),
     options: {
       'image-path': {
         type: 'string',

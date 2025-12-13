@@ -1,5 +1,5 @@
 export type StripMetadataOptions = {
-  inputBuffer: ArrayBuffer
+  inputBuffer: ArrayBuffer | Buffer
   autoRotate?: boolean
 }
 

@@ -1,3 +1,5 @@
+import { ImageFormat } from 'src/features/compress/constants'
+
 import type { CompressOptions, CompressResult } from './types'
 
 export async function compressImage({
@@ -10,15 +12,17 @@ export async function compressImage({
   let sharpInstance = sharp(inputBuffer)
 
   switch (format) {
-    case 'jpeg':
+    case ImageFormat.JPEG:
       sharpInstance = sharpInstance.jpeg({ quality, mozjpeg: true })
       break
-    case 'png':
+    case ImageFormat.PNG:
       sharpInstance = sharpInstance.png({ quality, compressionLevel: 9 })
       break
-    case 'webp':
+    case ImageFormat.WEBP:
       sharpInstance = sharpInstance.webp({ quality })
       break
+    default:
+      throw new Error(`Unsupported image format: ${format}`)
   }
 
   const buffer = await sharpInstance.toBuffer()

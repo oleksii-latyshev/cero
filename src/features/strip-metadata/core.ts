@@ -27,5 +27,5 @@ export async function stripMetadata({
 }
 
 export async function preserveMetadata(sharpInstance: Sharp): Promise<Buffer> {
-  return sharpInstance.toBuffer({ withMetadata: true })
+  return sharpInstance.withMetadata().toBuffer()
 }

@@ -182,6 +182,16 @@
       "linter": {
         "enabled": false
       }
+    },
+    {
+      "includes": ["**/*.config.ts", "**/*.config.js"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
     }
   ]
 }
