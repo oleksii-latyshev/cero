@@ -1,16 +1,14 @@
 import type { ImageFormat } from 'src/features/compress/constants'
 
 export type CompressOptions = {
+  inputBuffer: ArrayBuffer | Buffer
   quality: number
-  inputPath: string
-  outputPath: string
   format: ImageFormat
 }
 
 export type CompressResult = {
-  originalSize: number
+  buffer: Buffer
   compressedSize: number
-  savedPercent: number
 }
 
 export type CompressArgs = {
