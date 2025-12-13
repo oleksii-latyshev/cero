@@ -1,20 +1,13 @@
-import Bun from 'bun'
-
-import { calculateSavedPercent } from './helpers'
 import type { CompressOptions, CompressResult } from './types'
 
 export async function compressImage({
-  inputPath,
-  outputPath,
+  inputBuffer,
   quality,
   format,
 }: CompressOptions): Promise<CompressResult> {
-  const file = Bun.file(inputPath)
-  const originalSize = file.size
-  const buffer = await file.arrayBuffer()
-
   const sharp = (await import('sharp')).default
-  let sharpInstance = sharp(buffer)
+
+  let sharpInstance = sharp(inputBuffer)
 
   switch (format) {
     case 'jpeg':
@@ -28,15 +21,10 @@ export async function compressImage({
       break
   }
 
-  const compressedBuffer = await sharpInstance.toBuffer()
-  await Bun.write(outputPath, compressedBuffer)
-
-  const compressedSize = Bun.file(outputPath).size
-  const savedPercent = calculateSavedPercent(originalSize, compressedSize)
+  const buffer = await sharpInstance.toBuffer()
 
   return {
-    originalSize,
-    compressedSize,
-    savedPercent,
+    buffer,
+    compressedSize: buffer.length,
   }
 }
